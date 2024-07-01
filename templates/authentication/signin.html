@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playwrite+ES+Deco:wght@100..400&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Playwrite+ES+Deco:wght@100..400&family=Playwrite+IT+Moderna:wght@100..400&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Nova+Round&display=swap');
+
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      background: rgb(155, 242, 171);
+    }
+
+    form {
+      max-width: 300px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      margin-top: 43px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      box-sizing: border-box;
+      margin-bottom: 15px;
+    }
+
+    button[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      border-radius: 11px;
+      font-family: "Nova Round", system-ui;
+      font-size: 16px;
+    }
+
+    button:hover[type="submit"] {
+      background-color: green;
+      color: white;
+    }
+
+    nav {
+      display: flex;
+      background: radial-gradient(125% 125% at 50% 10%, #000 40%, rgb(71, 71, 71) 100%);
+      align-items: center;
+      padding: 18px 22px;
+    }
+
+    .logo {
+      font-size: 155%;
+      font-family: "Playwrite ES Deco", cursive;
+      color: #4CAF50;
+    }
+
+    .logostyle {
+      color: rgb(255, 47, 47);
+      font-size: 110%;
+    }
+
+    nav ul {
+      display: flex;
+      position: absolute;
+      right: 22%;
+    }
+
+    nav ul li {
+      list-style-type: none;
+
+      font-family: "Playwrite IT Moderna", cursive;
+      font-size: 26px;
+      padding: 22%;
+    }
+
+    nav ul li a {
+      color: rgb(249, 249, 249);
+      text-decoration: none;
+    }
+
+    nav ul li a:hover {
+      color: rgb(234, 120, 120);
+      text-decoration: none;
+    }
+
+    .maincontainer {
+      font-family: "Nova Round", system-ui
+    }
+
+    .buttonbox {
+      margin-top: 14px;
+      display: flex;
+      justify-content: center;
+    }
+
+    #username,
+    #pass1 {
+      border-radius: 8px;
+      padding: 11px;
+      border: 1px solid black;
+      margin-top: 4px;
+    }
+    .full-width-alert {
+      width: 100%;
+      margin-bottom: 1rem; 
+    }
+
+    .full-width-alert .close {
+      float: right;
+      font-size: 1.5rem;
+      font-weight: bold;
+      line-height: 1;
+      color: #000;
+      text-shadow: none;
+      opacity: 0.5;
+    }
+
+    .full-width-alert .close:hover {
+      color: #000;
+      text-decoration: none;
+      opacity: 0.75;
+    }
+
+    .full-width-alert .close:focus {
+      outline: none;
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <span class="logo">
+      <span class="logostyle">&lt;</span>
+      HealthHub
+      <span class="logostyle">&gt;</span>
+    </span>
+    <ul>
+      <li><a href="/signin">LogIn</a></li>
+      <li><a href="/signup">SignUp</a></li>
+    </ul>
+  </nav>
+
+  {% for message in messages %}
+    <div class="alert alert-primary alert-dismissible fade show full-width-alert" role="alert">
+      <strong>Message:</strong>  {{ message }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  {% endfor %}
+
+  <div class="maincontainer">
+
+
+    <h2>SIGN IN</h2>
+
+    
+
+    <form action="/signin" method="POST">
+      {% csrf_token %}
+
+      <label for="username">Username</label>
+      <input class="inputfields" type="text" id="username" name="username" placeholder="Enter your username" required>
+      <br>
+
+      <label for="pass1">Password</label>
+      <input class="inputfields" type="password" id="pass1" name="pass1" placeholder="Enter your password" required>
+      <br>
+      <div class="buttonbox">
+
+        <button type="submit">Sign In</button>
+      </div>
+    </form>
+
+
+  </div>
+  
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

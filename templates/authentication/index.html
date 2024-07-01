@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Authentication</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playwrite+ES+Deco:wght@100..400&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Playwrite+ES+Deco:wght@100..400&family=Playwrite+IT+Moderna:wght@100..400&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Nova+Round&display=swap');
+
+
+    body {
+      margin: 0;
+      padding: 0;
+      background:rgb(155, 242, 171);
+    }
+    .container{
+      font-family: "Nova Round", system-ui;
+    }
+    button[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      border-radius: 11px;
+      font-family: "Nova Round", system-ui;
+      font-size: 16px;
+    }
+
+    button:hover[type="submit"] {
+      background-color: green;
+      color: white;
+    }
+
+    .buttonbox {
+      margin-top: 14px;
+      display: flex;
+      justify-content: center;
+    }
+
+    button a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    nav {
+      display: flex;
+      background: radial-gradient(125% 125% at 50% 10%, #000 40%, rgb(71, 71, 71) 100%);
+      align-items: center;
+      padding: 18px 22px;
+    }
+
+    .logo {
+      font-size: 155%;
+      font-family: "Playwrite ES Deco", cursive;
+      color: #4CAF50;
+    }
+
+    .logostyle {
+      color: rgb(255, 47, 47);
+      font-size: 110%;
+    }
+
+    nav ul {
+      display: flex;
+      position: absolute;
+      right: 22%;
+    }
+
+    nav ul li {
+      list-style-type: none;
+
+      font-family: "Playwrite IT Moderna", cursive;
+      font-size: 26px;
+      padding: 22%;
+    }
+
+    nav ul li a {
+      color: rgb(249, 249, 249);
+      text-decoration: none;
+    }
+
+    nav ul li a:hover {
+      color: rgb(234, 120, 120);
+      text-decoration: none;
+    }
+    .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #3fdd59;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .user-info-container {
+            margin-top: 20px;
+        }
+        .user-info-container ul {
+            list-style: none;
+            padding: 0;
+        }
+        .user-info-container li {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+        }
+        .user-info-container li span {
+            font-weight: bold;
+            color: #555;
+        }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <span class="logo">
+      <span class="logostyle">&lt;</span>
+      HealthHub
+      <span class="logostyle">&gt;</span>
+    </span>
+    <ul>
+      <li><a href="/signin">LogIn</a></li>
+      <li><a href="/signup">SignUp</a></li>
+    </ul>
+  </nav>
+
+  {% csrf_token %}
+  <div class="container">
+    <h1>Welcome, <span>{{ fname }}</span> <span>{{ lname }}</span>!</h1>
+    <div class="user-info-container">
+        <ul>
+            <li><span>Username:</span> <span>{{ username }}</span></li>
+            <li><span>Address:</span> <span>{{ address }}</span></li>
+            <li><span>State:</span> <span>{{ state }}</span></li>
+            <li><span>City:</span> <span>{{ city }}</span></li>
+        </ul>
+    </div>
+</div>
+
+  <div class="buttonbox">
+
+    <button id="logout" type="submit"><a href="/signout">Sign Out</a></button>
+  </div>
+</body>
+<script>
+  let button = document.getElementById("logout");
+button.addEventListener("click", () => {
+    alert("Are you sure to log out");
+});
+
+</script>
+</html>

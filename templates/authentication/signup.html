@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playwrite+ES+Deco:wght@100..400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playwrite+ES+Deco:wght@100..400&family=Playwrite+IT+Moderna:wght@100..400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Nova+Round&display=swap');
+
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(125% 125% at 50% 10%, #4CAF50 10%, #63e 100%);
+
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+
+            font-family: "Nova Round", system-ui
+        }
+
+
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+        }
+
+        .form-text {
+            font-size: 0.8em;
+            color: #999;
+            margin-bottom: 10px;
+        }
+
+        button[type="submit"] {
+            background-color: #4CAF50;
+            /* Green */
+            color: white;
+            padding: 12px 20px;
+            /* width: 100%; */
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 11px;
+            font-family: "Nova Round", system-ui;
+            font-size: 16px;
+        }
+
+        button:hover[type="submit"] {
+            background-color: green;
+            /* Green */
+            color: white;
+        }
+
+        .buttonbox {
+            margin-top: 14px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .address-group input[type="text"] {
+            flex: 1;
+            margin-right: 10px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+            min-height: 50px;
+        }
+
+        #profile_picture {
+            /* width: 32%; */
+            /* color: white; */
+            padding: 3%;
+            padding-left: 0%;
+            /* background: #000; */
+        }
+
+        nav {
+            display: flex;
+            background: radial-gradient(125% 125% at 50% 10%, #000 40%, rgb(71, 71, 71) 100%);
+            align-items: center;
+            /* position: absolute; */
+            padding: 18px 22px;
+        }
+
+        .logo {
+            font-size: 155%;
+            font-family: "Playwrite ES Deco", cursive;
+            color: #4CAF50;
+        }
+
+        .logostyle {
+            color: rgb(255, 47, 47);
+            font-size: 110%;
+        }
+
+        nav ul {
+            display: flex;
+            position: absolute;
+            right: 22%;
+        }
+
+        nav ul li {
+            list-style-type: none;
+
+            font-family: "Playwrite IT Moderna", cursive;
+            font-size: 26px;
+            padding: 22%;
+        }
+
+        nav ul li a {
+            color: rgb(249, 249, 249);
+            text-decoration: none;
+        }
+
+        nav ul li a:hover {
+            color: rgb(234, 120, 120);
+            text-decoration: none;
+        }
+
+        #username,
+        #fname,
+        #lname,
+        #pass1,
+        #pass2,
+        #address,
+        #city,
+        #state,
+        #pincode {
+            border-radius: 8px;
+            padding: 11px;
+            border: 1px solid black;
+            margin-top: 4px;
+        }
+
+        .full-width-alert {
+            width: 100%;
+            margin-bottom: 1rem;
+            /* Optional: add spacing between alerts */
+        }
+
+        .full-width-alert .close {
+            float: right;
+            font-size: 1.5rem;
+            font-weight: bold;
+            line-height: 1;
+            color: #000;
+            text-shadow: none;
+            opacity: 0.5;
+        }
+
+        .full-width-alert .close:hover {
+            color: #000;
+            text-decoration: none;
+            opacity: 0.75;
+        }
+
+        .full-width-alert .close:focus {
+            outline: none;
+        }
+
+        #is_doctor {
+            display: inline-block;
+            vertical-align: middle;
+            position: relative;
+            cursor: pointer;
+            user-select: none;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+
+
+    <nav>
+        <span class="logo">
+            <span class="logostyle">&lt;</span>
+            HealthHub
+            <span class="logostyle">&gt;</span>
+        </span>
+        <ul>
+            <li><a href="/signin">LogIn</a></li>
+            <li><a href="/signup">SignUp</a></li>
+        </ul>
+    </nav>
+
+    {% for message in messages %}
+    <div class="alert alert-primary alert-dismissible fade show full-width-alert" role="alert">
+        <strong>Message:</strong> {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+    <div class="maincontainer">
+
+
+
+        <div class="container mt-3">
+
+            <h1>User Registration</h1>
+            <form action="/signup" method="POST">
+                {% csrf_token %}
+
+
+                <div>
+                    <label for="fname">First Name</label>
+                    <input type="text" id="fname" name="fname" placeholder="Enter your first name" required>
+                </div>
+
+                <div>
+                    <label for="lname">Last Name</label>
+                    <input type="text" id="lname" name="lname" placeholder="Enter your last name" required>
+                </div>
+
+                <div class="profile-picture-upload">
+                    <label for="profile_picture">Profile Picture</label>
+                    <input type="file" id="profile_picture" name="profile_picture" accept="image/*" required>
+                </div>
+
+                <div>
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username"
+                        placeholder="Create a username (only letters and numbers)" required>
+                    <div class="form-text">*Username must be unique and alphanumeric.</div>
+                </div>
+                <div>
+                    <label for="is_doctor">Are you a doctor?</label>
+                    <input type="checkbox" id="is_doctor" name="is_doctor">
+                </div>
+
+                <div>
+                    <label for="email">Email address</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                </div>
+
+                <div>
+                    <div style="display: flex;align-items: center;">
+                        <label for="pass1">Create a password</label>
+                        <svg id="togglePassword" style="height:16px;margin-left: 12px; cursor: pointer;"
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+                            <path
+                                d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c8.4-19.3 10.6-41.4 4.8-63.3c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zM373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5L373 389.9z" />
+                        </svg>
+                    </div>
+                    <input type="password" id="pass1" name="pass1" placeholder="Create a strong password" required>
+
+                    <div class="form-text">*Password must be at least 8 characters long and include a combination of
+                        uppercase, lowercase, numbers, and symbols.</div>
+                </div>
+
+                <div>
+                    <div style="display: flex;align-items: center;">
+                        <label for="pass2">Confirm password</label>
+                        <svg id="togglePassword" style="height:16px;margin-left: 12px; cursor: pointer;"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 640 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                            <path
+                                d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c8.4-19.3 10.6-41.4 4.8-63.3c-11.1-41.5-47.8-69.4-88.6-71.1c-5.8-.2-9.2 6.1-7.4 11.7c2.1 6.4 3.3 13.2 3.3 20.3c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zM373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5L373 389.9z" />
+                        </svg>
+                    </div>
+                    <input type="password" id="pass2" name="pass2" placeholder="Confirm password" required>
+                </div>
+
+                <div class="address-group">
+                    <label for="address">Address</label>
+                    <div>
+                        <textarea id="address" name="address"
+                            placeholder="Enter your address (street address, apartment number)" required></textarea>
+                    </div>
+                    <div>
+                        <input type="text" id="city" name="city" placeholder="City" required>
+                    </div>
+                    <div>
+                        <input type="text" id="state" name="state" placeholder="State" required>
+                    </div>
+                    <div>
+                        <input type="text" id="pincode" name="pincode" placeholder="Pincode" maxlength="6" required>
+                    </div>
+                </div>
+
+                <div class="buttonbox">
+
+                    <button type="submit">Sign Up</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const togglePassword = document.getElementById('togglePassword');
+        const pass1 = document.getElementById('pass1');
+        const eyeIcon = document.getElementById('eyeIcon');
+
+        togglePassword.addEventListener('click', function () {
+            const type = pass1.getAttribute('type') === 'password' ? 'text' : 'password';
+            pass1.setAttribute('type', type);
+        });
+    });
+
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+
+</html>
